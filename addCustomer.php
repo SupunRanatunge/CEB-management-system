@@ -1,4 +1,8 @@
-
+$dbhost = 'localhost';
+$dbuser = 'Zupun';
+$dbpass = 'shitHappens';
+$dbname = 'cebms';
+$connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +15,15 @@
     <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
+
             margin-bottom: 0;
             border-radius: 0;
+        }
+        .navbar-body {
+
+            padding-top: 30px;
+            padding-left: 500px;
+            padding-bottom: 200px;
         }
 
         /* Add a gray background color and some padding to the footer */
@@ -61,5 +72,27 @@
         </div>
     </div>
 </nav>
+<nav class="navbar" >
+    <div class="navbar-body">
+        <form action="/action_page.php">
+            ID:
+            <input type="text" placeholder="xxxx" name="id" >
+            <br><br>
+            Branch ID    :
+            <input type="text" placeholder="xxxx" name="branch_id" >
+            <br><br>
+            Name    :
+            <input type="text" placeholder="Zupun" name="name" ><br><br>
+            Email:
+            <input type="text" placeholder="supun@gmail.com" name="email"><br><br>
+            Address:
+            <input type="text" placeholder="No 221B/Baker street/London" name="address"><br><br>
+            Telephone:
+            <input type="text" placeholder="xxxxxxxxxx" name="telephone"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</nav>
+
 </body>
 </html>
