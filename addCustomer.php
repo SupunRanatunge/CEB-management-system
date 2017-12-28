@@ -1,9 +1,5 @@
 <?php
-$dbhost = 'localhost';
-$dbuser = 'Zupun';
-$dbpass = 'shitHappens';
-$dbname = 'cebms';
-$connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+include('db_connect.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,10 +89,20 @@ $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
             <input type="text" placeholder="xxxxxxxxxx" name="telephone"><br><br>
             Account No:
             <input type="text" placeholder="xxxxxxxx" name="account_no"><br><br>
-            <input type="submit" value="Submit">
+            Connection Type:
+            <input type="text" placeholder="xxxxxxxx" name="connection_type"><br><br>
+            Password:
+            <input type="text" placeholder="xxxxxxxx" name="password"><br><br>
+            Confirm Password:
+            <input type="text" placeholder="xxxxxxxx" name="confirm_password"><br><br>
+
+            <input type="submit" name="submitted" value="Submit">
         </form>
     </div>
 </nav>
+<?php
+
+?>
 
 </body>
 </html>
