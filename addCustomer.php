@@ -1,8 +1,10 @@
+<?php
 $dbhost = 'localhost';
 $dbuser = 'Zupun';
 $dbpass = 'shitHappens';
 $dbname = 'cebms';
 $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +76,7 @@ $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 </nav>
 <nav class="navbar" >
     <div class="navbar-body">
-        <form action="/action_page.php">
+        <form action="addCustomer_process.php" method="post">
             ID:
             <input type="text" placeholder="xxxx" name="id" >
             <br><br>
@@ -89,6 +91,8 @@ $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
             <input type="text" placeholder="No 221B/Baker street/London" name="address"><br><br>
             Telephone:
             <input type="text" placeholder="xxxxxxxxxx" name="telephone"><br><br>
+            Account No:
+            <input type="text" placeholder="xxxxxxxx" name="account_no"><br><br>
             <input type="submit" value="Submit">
         </form>
     </div>
