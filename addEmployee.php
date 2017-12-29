@@ -1,4 +1,11 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: supun
+ * Date: 12/30/2017
+ * Time: 12:24 AM
+ */
+
 include('db_connect.php');
 ?>
 <!DOCTYPE html>
@@ -74,7 +81,7 @@ include('db_connect.php');
 </nav>
 <nav class="navbar" >
     <div class="navbar-body">
-        <form action="addCustomer.php" method="post">
+        <form action="addEmployee.php" method="post">
             ID:
             <input type="int" placeholder="xxxx" name="id" >
             <br><br>
@@ -85,18 +92,16 @@ include('db_connect.php');
             <input type="text" placeholder="Zupun" name="name" ><br><br>
             Email:
             <input type="text" placeholder="supun@gmail.com" name="email"><br><br>
-            Address:
-            <input type="text" placeholder="No 221B/Baker street/London" name="address"><br><br>
+
             Telephone:
             <input type="int" placeholder="xxxxxxxxxx" name="telephone"><br><br>
-            Account No:
-            <input type="int" placeholder="xxxxxxxx" name="account_no"><br><br>
-            Connection Type:
-            <select name="connection_type">
-                <option value="domestic">Domestic</option>
-                <option value="government">Government</option>
-                <option value="industrial">Industrial</option>
-                <option value="religious">Religious</option>
+
+            Post:
+            <select name="post">
+                <option value="manager">Manager</option>
+                <option value="cashier">Cashier</option>
+                <option value="meter_reader">Meter Reader</option>
+                
             </select><br><br>
             Password:
             <input type="text" placeholder="xxxxxxxx" name="password"><br><br>
@@ -112,21 +117,21 @@ include('db_connect.php');
 $ID = $_POST['id'];
 $branch_ID = $_POST['branch_id'];
 $name = $_POST['name'];
-$address = $_POST['address'];
-$account_no = $_POST['account_no'];
+
+
 $email = $_POST['email'];
 $telephone = $_POST['telephone'];
-$connection_type = $_POST['connection_type'];
+$post = $_POST['post'];
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
 
 //queries
-$query1 = "INSERT INTO customer VALUES ($ID,$branch_ID,'$name','$address',$account_no,'$email',$telephone)";
-$query2 = "INSERT INTO domestic VALUES ($ID)";
-$query3 = "INSERT INTO government VALUES ($ID)";
-$query4 = "INSERT INTO industrial VALUES ($ID)";
-$query5 = "INSERT INTO religious VALUES ($ID)";
-$query6 = "INSERT INTO customer_credentials VALUES ($ID,'$password')";
+$query1 = "INSERT INTO employee VALUES ($ID,$branch_ID,'$name','$email',$telephone)";
+$query2 = "INSERT INTO meter_reader VALUES ($ID)";
+$query3 = "INSERT INTO cashier VALUES ($ID)";
+$query4 = "INSERT INTO manager VALUES ($ID)";
+
+$query5 = "INSERT INTO employee_credentials VALUES ($ID,'$password')";
 
 
 if($password === $confirm_password){
@@ -136,15 +141,13 @@ if($password === $confirm_password){
     }else{
 
         echo "<script>alert('record inserted successfully');</script>";
-        mysqli_query($connection,$query6);
-        if($connection_type==='domestic'){
+        mysqli_query($connection,$query5);
+        if($post==='meter_reader'){
             mysqli_query($connection,$query2);
-        }elseif ($connection_type==='government'){
+        }elseif ($connection_type==='cashier'){
             mysqli_query($connection,$query3);
-        }elseif ($connection_type==='industrial'){
+        }elseif ($connection_type==='manager'){
             mysqli_query($connection,$query4);
-        }elseif ($connection_type==='religious') {
-            mysqli_query($connection, $query5);
         }
     }
 
