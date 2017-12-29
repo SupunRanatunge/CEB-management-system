@@ -17,15 +17,10 @@ $account_no = $_POST['account_no'];
 $email = $_POST['email'];
 $telephone = $_POST['telephone'];
 $connection_type = $_POST['connection_type'];
-$password = $_POST['$password'];
+$password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
-echo($ID);
-if(!isset($password)){
-    echo ($password);
-    echo($ID);
-}
 
-echo($ID);
+
 $query1 = "INSERT INTO customer VALUES ($ID,$branch_ID,'$name','$address',$account_no,'$email',$telephone)";
 
 if($password === $confirm_password){

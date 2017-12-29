@@ -14,7 +14,5 @@ $connection = mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
 
 if(!$connection){
     die('connection is not set');
-}else{
-    echo('connected successfully');
 }
 ?>

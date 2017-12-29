@@ -72,12 +72,12 @@ include('db_connect.php');
 </nav>
 <nav class="navbar" >
     <div class="navbar-body">
-        <form action="addCustomer_process.php" method="post">
+        <form action="addCustomer.php" method="post">
             ID:
-            <input type="text" placeholder="xxxx" name="id" >
+            <input type="int" placeholder="xxxx" name="id" >
             <br><br>
             Branch ID    :
-            <input type="text" placeholder="xxxx" name="branch_id" >
+            <input type="int" placeholder="xxxx" name="branch_id" >
             <br><br>
             Name    :
             <input type="text" placeholder="Zupun" name="name" ><br><br>
@@ -86,11 +86,16 @@ include('db_connect.php');
             Address:
             <input type="text" placeholder="No 221B/Baker street/London" name="address"><br><br>
             Telephone:
-            <input type="text" placeholder="xxxxxxxxxx" name="telephone"><br><br>
+            <input type="int" placeholder="xxxxxxxxxx" name="telephone"><br><br>
             Account No:
-            <input type="text" placeholder="xxxxxxxx" name="account_no"><br><br>
+            <input type="int" placeholder="xxxxxxxx" name="account_no"><br><br>
             Connection Type:
-            <input type="text" placeholder="xxxxxxxx" name="connection_type"><br><br>
+            <select name="connection_type">
+                <option value="domestic">Domestic</option>
+                <option value="government">Government</option>
+                <option value="industrial">Industrial</option>
+                <option value="religious">Religious</option>
+            </select><br><br>
             Password:
             <input type="text" placeholder="xxxxxxxx" name="password"><br><br>
             Confirm Password:
@@ -101,6 +106,51 @@ include('db_connect.php');
     </div>
 </nav>
 <?php
+
+$ID = $_POST['id'];
+$branch_ID = $_POST['branch_id'];
+$name = $_POST['name'];
+$address = $_POST['address'];
+$account_no = $_POST['account_no'];
+$email = $_POST['email'];
+$telephone = $_POST['telephone'];
+$connection_type = $_POST['connection_type'];
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
+
+
+$query1 = "INSERT INTO customer VALUES ($ID,$branch_ID,'$name','$address',$account_no,'$email',$telephone)";
+$query2 = "INSERT INTO domestic VALUES ($ID)";
+$query3 = "INSERT INTO government VALUES ($ID)";
+$query4 = "INSERT INTO industrial VALUES ($ID)";
+$query5 = "INSERT INTO religious VALUES ($ID)";
+$query6 = "INSERT INTO customer_credentials VALUES ($ID,'$password')";
+
+if($password === $confirm_password){
+    if(!mysqli_query($connection,$query1)){
+        die('error inserting new record');
+
+    }else{
+
+        echo "<script>alert('record inserted successfully');</script>";
+        mysqli_query($connection,$query6);
+        if($connection_type==='domestic'){
+            mysqli_query($connection,$query2);
+        }elseif ($connection_type==='government'){
+            mysqli_query($connection,$query3);
+        }elseif ($connection_type==='industrial'){
+            mysqli_query($connection,$query4);
+        }elseif ($connection_type==='religious') {
+            mysqli_query($connection, $query5);
+        }
+    }
+
+}else{
+    echo "<script>alert('Passwords don\'t match');</script>";
+
+}
+
+
 
 ?>
 
