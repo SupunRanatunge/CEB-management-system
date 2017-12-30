@@ -101,7 +101,7 @@ include('db_connect.php');
                 <option value="manager">Manager</option>
                 <option value="cashier">Cashier</option>
                 <option value="meter_reader">Meter Reader</option>
-                
+
             </select><br><br>
             Password:
             <input type="text" placeholder="xxxxxxxx" name="password"><br><br>
